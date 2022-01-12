@@ -2,11 +2,11 @@ import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ToDoScreen from './screens/ToDoScreen';
-import HomeScreen from './screens/HomeScreen';
-import ListScreen from './screens/ListScreen';
-import DetailScreen from './screens/DetailScreen';
-import WalletScreen from './screens/WalletScreen';
+import ToDoScreen from './src/screens/ToDoScreen';
+import HomeScreen from './src/screens/HomeScreen';
+import ListScreen from './src/screens/ListScreen';
+import DetailScreen from './src/screens/DetailScreen';
+import WalletScreen from './src/screens/WalletScreen';
 
 /**
  * Use `HomeScreen` as the initial route
