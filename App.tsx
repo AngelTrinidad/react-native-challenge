@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="ToDo" component={ToDoScreen} />
         <Stack.Screen name="List" component={ListScreen} />
         <Stack.Screen name="Detail" component={DetailScreen} />
