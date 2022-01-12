@@ -1,2 +1,0 @@
-export const DEFAULT_PADDING_HORIZONTAL = 30;
-export const DEFAULT_PADDING_TOP = 24;

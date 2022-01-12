@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, ViewProps } from "react-native";
-import { DEFAULT_PADDING_HORIZONTAL } from "../../constants";
 import ViewFlex from "./ViewFlex";
+import { DEFAULT_PADDING_HORIZONTAL } from "../../styles";
 
 type Props = ViewProps & {
   backgroundColor?: string;
