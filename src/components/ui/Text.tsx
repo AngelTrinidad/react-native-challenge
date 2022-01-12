@@ -10,16 +10,16 @@ import {
   StyleProp,
   StyleSheet,
   Text,
-  TextProps,
+  TextProps as NativeTextProps,
   TextStyle,
 } from "react-native";
 
-export type WrapperTextProps = TextProps & {
+export type TextProps = NativeTextProps & {
   children: React.ReactNode;
   align?: "left" | "right" | "center" | "auto" | "justify";
 };
 
-const WrapperText: React.FC<WrapperTextProps> = ({
+const WrapperText: React.FC<TextProps> = ({
   align,
   children,
   style,
