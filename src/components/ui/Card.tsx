@@ -16,7 +16,6 @@ const Card: React.FC<Props> = ({ children, style, ...rest }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
     backgroundColor: "white",
     paddingHorizontal: 16,
     paddingVertical: 20,

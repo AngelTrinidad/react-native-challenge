@@ -4,20 +4,25 @@ import Currency from "./Currency";
 import { Text } from "../../ui";
 import { TCurrency } from "../../../types";
 import { CURRENCY_SYMBOLS } from "../../../utils/constants";
+import { formatNumber, roundNumber } from "../../../utils/helpers";
 
 type Props = {
   label: string;
-  value: string;
+  value: number | null;
   currency?: TCurrency;
 };
 
 const RowDetail: React.FC<Props> = ({ label, value, currency }) => {
+  const valueFormatted = React.useMemo(
+    () => (value ? formatNumber(roundNumber(value)) : "-"),
+    [value]
+  );
   return (
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
-      <Text style={styles.value}>
+      <Text style={styles.value} adjustsFontSizeToFit numberOfLines={1}>
         {!!currency && CURRENCY_SYMBOLS[currency]}
-        {value}
+        {valueFormatted}
       </Text>
       {!!currency && <Currency value={currency} />}
     </View>
@@ -27,16 +32,17 @@ const RowDetail: React.FC<Props> = ({ label, value, currency }) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignItems: "flex-end",
+    alignItems: "center",
+    marginTop: 10,
   },
   label: {
     fontSize: 14,
     fontWeight: "500",
-    marginTop: 10,
     marginRight: 8,
   },
   value: {
     fontSize: 16,
+    flex: 1,
   },
   currency: {
     fontWeight: "500",

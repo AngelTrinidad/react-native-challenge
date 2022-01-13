@@ -3,6 +3,8 @@ export { default as Text } from "./Text";
 export { default as Heading } from "./Heading";
 export { default as ViewFlex } from "./ViewFlex";
 export { default as ViewContainer } from "./ViewContainer";
+export { default as ViewContainerScroll } from "./ViewContainerScroll";
 export { default as Button } from "./Button";
 export { default as TextInput } from "./TextInput";
 export { default as Card } from "./Card";
+export { default as TabbarLabel } from "./TabbarLabel";

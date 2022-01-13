@@ -16,24 +16,21 @@ const CoinCard: React.FC<Props> = ({ coin, withDetail }) => {
   return (
     <Card>
       <View style={styles.header}>
-        <Text style={styles.symbol}>{coin.id}</Text>
+        <Text style={styles.symbol}>{coin.symbol}</Text>
         <Text style={styles.name}> - {coin.name}</Text>
         <Text style={styles.rank}>#{coin.rank}</Text>
       </View>
       <View style={styles.info}>
         <PriceText style={styles.price} amount={coin.priceUsd} />
-        <Pill
-          value={coin.changePercent24Hr}
-          increased={coin.changePercent24Hr > 0}
-        />
+        <Pill value={coin.changePercent24Hr} />
       </View>
       {withDetail && (
         <View style={styles.detail}>
-          <RowDetail label="Supply" value={formatNumber(coin.supply)} />
-          <RowDetail label="Max Supply" value={formatNumber(coin.maxSupply)} />
+          <RowDetail label="Supply" value={coin.supply} />
+          <RowDetail label="Max Supply" value={coin.maxSupply} />
           <RowDetail
             label="Market Cap"
-            value={formatNumber(coin.marketCapUsd)}
+            value={coin.marketCapUsd}
             currency="USD"
           />
         </View>
@@ -66,7 +63,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   price: {
-    marginRight: "auto",
+    flex: 1
   },
   detail: {
     marginTop: 6,

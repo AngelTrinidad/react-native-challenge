@@ -2,9 +2,9 @@ import React from "react";
 import { StyleSheet } from "react-native";
 import Text, { TextProps } from "./Text";
 
-const Heading: React.FC<TextProps> = ({ children, ...rest }) => {
+const Heading: React.FC<TextProps> = ({ children, style, ...rest }) => {
   return (
-    <Text style={styles.heading} {...rest}>
+    <Text style={[styles.heading, style]} {...rest}>
       {children}
     </Text>
   );

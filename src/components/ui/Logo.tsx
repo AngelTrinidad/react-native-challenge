@@ -2,8 +2,13 @@ import React from "react";
 import { Image } from "react-native";
 import ImageLogo from "../../assets/logo.png";
 
-const Logo: React.FC<any> = () => (
-  <Image style={{ width: 60, height: 50 }} source={ImageLogo} />
+type Props = {
+  width?: number;
+  height?: number;
+};
+
+const Logo: React.FC<Props> = ({ width = 31, height = 28 }) => (
+  <Image style={{ width, height }} source={ImageLogo} />
 );
 
 export default React.memo(Logo);
