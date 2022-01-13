@@ -4,17 +4,26 @@ import WalletTabs from "./WalletTabs";
 import ListScreen from "../../screens/ListScreen";
 import DetailScreen from "../../screens/DetailScreen";
 import { AuthStackScreen } from "../types";
-import { NAVIGATOR_STYLES } from "../../styles";
 import BackButton from "../../components/ui/BackButton";
 import LogoutButton from "../../components/ui/LogoutButton";
+import { useUserContextUpdater } from "../../contexts/UserContext";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 const Stack = createStackNavigator();
 
 const AuthStack: React.FC = () => {
+  const { signout } = useUserContextUpdater();
+  const { colors } = useThemeContext();
+
+  const headerBackTitleStyle = {
+    fontSize: 14,
+    color: colors.primary,
+  };
+
   return (
     <Stack.Navigator
       screenOptions={{
-        headerBackTitleStyle: NAVIGATOR_STYLES.headerBackTitle,
+        headerBackTitleStyle,
         headerBackImage: () => <BackButton />,
       }}
     >
@@ -22,7 +31,7 @@ const AuthStack: React.FC = () => {
         name={AuthStackScreen.List}
         component={ListScreen}
         options={{
-          headerRight: () => <LogoutButton />,
+          headerRight: () => <LogoutButton onPress={signout} />,
         }}
       />
       <Stack.Screen name={AuthStackScreen.Detail} component={DetailScreen} />

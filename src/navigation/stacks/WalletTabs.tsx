@@ -1,10 +1,10 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { THEME } from "../../styles";
 import { AuthStackScreen } from "../types";
 import AccountScreen from "../../screens/AccountScreen";
 import PartnerScreen from "../../screens/PartnersScreen";
 import { TabbarLabel } from "../../components/ui";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,10 +32,11 @@ const tabs = [
  * Wallet Tabs component
  */
 const WalletTabs: React.FC = () => {
+  const { colors } = useThemeContext();
   return (
     <Tab.Navigator
       tabBarOptions={{
-        activeTintColor: THEME.primaryColor,
+        activeTintColor: colors.primary,
         inactiveTintColor: "#0A132C",
         tabStyle: {
           padding: 0,

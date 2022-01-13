@@ -2,14 +2,14 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import DefaultStack from "./stacks/PublicStack";
 import AuthStack from "./stacks/AuthStack";
+import { useUserContextState } from "../contexts/UserContext";
 
 const Navigation = () => {
-  // TODO: get authenticated context
-  const isLogged: boolean = true;
+  const user = useUserContextState();
 
   return (
     <NavigationContainer>
-      {isLogged ? <AuthStack /> : <DefaultStack />}
+      {!!user ? <AuthStack /> : <DefaultStack />}
     </NavigationContainer>
   );
 };
