@@ -1,33 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Heading, ViewContainer, TextInput, Button } from "../components/ui";
 
-/* 
-  Implement form using any user/pass combination 
-  Store data using React context
-  💯 Handling Sensitive Info and Secure Storage is a great plus
-*/
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Welcome</Text>
-      <Text></Text>
-      <TextInput style={{ height: 40 }} placeholder="Enter your name" />
-      <TextInput style={{ height: 40 }} placeholder="Enter your passowrd" />
-      <Button title="Sign in" onPress={() => alert('List')} />
-    </View>
+    <ViewContainer style={styles.container}>
+      <Heading>Welcome</Heading>
+      <View style={styles.form}>
+        <TextInput placeholder="Enter your name" styleContainer={styles.name} />
+        <TextInput placeholder="Enter your passowrd" />
+      </View>
+      <Button title="Sign in" onPress={() => alert("List")} />
+    </ViewContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 12,
+  form: {
+    width: "100%",
+    marginVertical: 44,
   },
+  name: {
+    marginBottom: 16
+  }
 });

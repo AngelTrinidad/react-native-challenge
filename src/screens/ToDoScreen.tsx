@@ -1,33 +1,43 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import React from "react";
+import { StyleSheet, Image } from "react-native";
+import { Heading, ViewContainer, Text, Button } from "../components/ui";
+import Picture from "../assets/home-illustration.png";
+import { usePublicNavigation } from "../navigation/helpers";
 
-export default function HomeScreen() {
+const HomeScreen: React.FC = ()  => {
+  const navigation = usePublicNavigation()
+  const handlePressStart = React.useCallback(() => {
+    navigation.navigate("Home");
+  }, [navigation]);
+
   return (
-    <View style={styles.container}>
-      <Image style={styles.illustration} source={require('../assets/home-illustration.png')} />
-      <Text style={styles.title}>Howdy partner!</Text>
-      <Text>This is your assignment.</Text>
-      <Text>Follow the instructions on the Readme file.</Text>
-      <Text>Don’t worry, it’s easy! You should have the app looking smooth in no time.</Text>
-      <Button title="Start Here" onPress={() => alert('Home')} />
-    </View>
+    <ViewContainer style={styles.container}>
+      <Image style={styles.illustration} source={Picture} resizeMode="cover" />
+      <Heading style={styles.title}>Howdy partner!</Heading>
+      <Text align="center">This is your assignment.</Text>
+      <Text align="center">Follow the instructions on the Readme file.</Text>
+      <Text align="center" style={styles.lastText}>Don't worry, it's easy! You should have the app looking smooth in no time.</Text>
+      <Button title="Get Started" onPress={handlePressStart} />
+    </ViewContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   illustration: {
-    width: 256,
-    height: 256,
+    width: 206,
+    height: 206,
   },
   title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginBottom: 12,
+    marginVertical: 24,
+  },
+  lastText: {
+    marginTop: 12,
+    marginBottom: 44
   },
 });
+
+export default HomeScreen;
