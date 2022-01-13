@@ -16,3 +16,13 @@ export const formatNumber = (
     .replace(".", decimalSeparator)
     .replace(REGEX_FORMAT_NUMBER, separator);
 };
+
+/**
+ * Round a number
+ * @param value Plain number
+ * @param decimal How many decimals must shows. Default is two
+ */
+export const roundNumber = (value: number, decimal = 2) => {    
+  //@ts-ignore
+  return +(Math.round(value + `e+${decimal}`)  + `e-${decimal}`);
+}
