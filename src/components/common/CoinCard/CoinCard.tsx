@@ -5,7 +5,6 @@ import PriceText from "./PriceText";
 import RowDetail from "./RowDetail";
 import { Card, Text } from "../../ui";
 import { Coin } from "../../../models";
-import { formatNumber } from "../../../utils/helpers";
 
 type Props = {
   coin: Coin;

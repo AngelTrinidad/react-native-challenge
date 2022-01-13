@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
+import { useThemeContext } from "../../../contexts/ThemeContext";
 import { Partner } from "../../../models";
-import { THEME } from "../../../styles";
 import { Card, Text } from "../../ui";
 import RowDetail from "./RowDetail";
 
@@ -11,9 +11,12 @@ type Props = {
 };
 
 const PartnerCard: React.FC<Props> = ({ partner, style }) => {
+  const { colors } = useThemeContext();
   return (
     <Card style={style}>
-      <Text style={styles.name}>{partner.name}</Text>
+      <Text style={[styles.name, { color: colors.primary }]}>
+        {partner.name}
+      </Text>
       <Text style={styles.description}>{partner.description}</Text>
       <RowDetail label="Roles" value={partner.roles} />
       <RowDetail label="Status" value={partner.status} />
@@ -23,7 +26,6 @@ const PartnerCard: React.FC<Props> = ({ partner, style }) => {
 
 const styles = StyleSheet.create({
   name: {
-    color: THEME.primaryColor,
     fontWeight: "700",
   },
   description: {

@@ -1,6 +1,7 @@
 import React from "react";
 import { ScrollView, ViewStyle } from "react-native";
 import { StyleSheet, ViewProps } from "react-native";
+import { DEFAULT_PADDING_HORIZONTAL, DEFAULT_PADDING_TOP } from "../../styles";
 import ViewContainer from "./ViewContainer";
 
 type Props = ViewProps & {
@@ -11,13 +12,16 @@ type Props = ViewProps & {
 
 const ViewContainerScroll: React.FC<Props> = ({
   children,
-  style,
   scrollViewStyle,
   backgroundColor,
   ...rest
 }) => {
   return (
-    <ViewContainer backgroundColor={backgroundColor} {...rest}>
+    <ViewContainer
+      backgroundColor={backgroundColor}
+      {...rest}
+      withPadding={false}
+    >
       <ScrollView style={[styles.scroll, scrollViewStyle]}>
         {children}
       </ScrollView>
@@ -28,7 +32,7 @@ const ViewContainerScroll: React.FC<Props> = ({
 const styles = StyleSheet.create({
   scroll: {
     flex: 1,
-    paddingTop: 24
+    paddingHorizontal: DEFAULT_PADDING_HORIZONTAL,
   },
 });
 

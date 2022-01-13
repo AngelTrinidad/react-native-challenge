@@ -6,7 +6,7 @@ import { roundNumber } from "../../../utils/helpers";
 type ConditionalStyles = {
   backgroundColor: string;
   textColor: string;
-  icon: "arrow-up" | "arrow-down";
+  icon: "arrow-up" | "arrow-down" | null;
   iconColor: string;
 };
 
@@ -15,22 +15,34 @@ type Props = {
 };
 
 const Pill: React.FC<Props> = ({ value }) => {
-  const valueFormatted = React.useMemo(() => roundNumber(Math.abs(value), 1), [value]);
+  const conditionalStyles: ConditionalStyles = React.useMemo(() => {
+    if (value == 0) {
+      return {
+        backgroundColor: "#6B7280",
+        textColor: "white",
+        icon: null,
+        iconColor: "white",
+      };
+    } else if (value > 0) {
+      return {
+        backgroundColor: "#D1FAE5",
+        textColor: "#065F46",
+        icon: "arrow-up",
+        iconColor: "#10B981",
+      };
+    }
+    return {
+      backgroundColor: "#FDDCDC",
+      textColor: "#A50606",
+      icon: "arrow-down",
+      iconColor: "#F33A3A",
+    };
+  }, [value]);
 
-  const conditionalStyles: ConditionalStyles =
-    value > 0
-      ? {
-          backgroundColor: "#FDDCDC",
-          textColor: "#A50606",
-          icon: "arrow-up",
-          iconColor: "#F33A3A",
-        }
-      : {
-          backgroundColor: "#D1FAE5",
-          textColor: "#065F46",
-          icon: "arrow-down",
-          iconColor: "#10B981",
-        };
+  const valueFormatted = React.useMemo(
+    () => roundNumber(Math.abs(value), 2),
+    [value]
+  );
 
   return (
     <View
@@ -39,12 +51,18 @@ const Pill: React.FC<Props> = ({ value }) => {
         { backgroundColor: conditionalStyles.backgroundColor },
       ]}
     >
-      <Ionicons
-        name={conditionalStyles.icon}
-        color={conditionalStyles.iconColor}
-        size={14}
-      />
-      <Text style={[styles.value, { color: conditionalStyles.textColor }]}>
+      {!!conditionalStyles.icon && (
+        <Ionicons
+          name={conditionalStyles.icon}
+          color={conditionalStyles.iconColor}
+          size={12}
+        />
+      )}
+      <Text
+        style={[styles.value, { color: conditionalStyles.textColor }]}
+        numberOfLines={1}
+        adjustsFontSizeToFit
+      >
         {valueFormatted}%
       </Text>
     </View>
@@ -53,7 +71,7 @@ const Pill: React.FC<Props> = ({ value }) => {
 
 const styles = StyleSheet.create({
   container: {
-    minWidth: 72,
+    width: 72,
     minHeight: 24,
     borderRadius: 12,
     flexDirection: "row",
@@ -63,7 +81,7 @@ const styles = StyleSheet.create({
   value: {
     fontSize: 14,
     fontWeight: "500",
-    marginLeft: 2
+    marginLeft: 2,
   },
 });
 

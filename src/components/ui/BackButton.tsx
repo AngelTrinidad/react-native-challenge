@@ -1,14 +1,18 @@
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
-import { HEADER_PADDING, THEME } from "../../styles";
+import { HEADER_PADDING } from "../../styles";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
-const BackButton: React.FC = () => (
-  <MaterialIcons
-    name="arrow-back-ios"
-    color={THEME.primaryColor}
-    size={12}
-    style={{ paddingLeft: HEADER_PADDING }}
-  />
-);
+const BackButton: React.FC = () => {
+  const { colors } = useThemeContext();
+  return (
+    <MaterialIcons
+      name="arrow-back-ios"
+      color={colors.primary}
+      size={12}
+      style={{ paddingLeft: HEADER_PADDING }}
+    />
+  );
+};
 
 export default React.memo(BackButton);

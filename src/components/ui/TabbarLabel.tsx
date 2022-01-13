@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
+import { useThemeContext } from "../../contexts/ThemeContext";
 import Text from "./Text";
-import { THEME } from "../../styles";
 
 type Props = {
   color: string;
@@ -10,11 +10,12 @@ type Props = {
 };
 
 const TabbarLabel: React.FC<Props> = ({ color, focused, label }) => {
+  const { colors } = useThemeContext();
   return (
     <View
       style={[
         styles.container,
-        { borderTopColor: focused ? THEME.primaryColor : "white" },
+        { borderTopColor: focused ? colors.primary : "white" },
       ]}
     >
       <Text style={[styles.text, { color }]}>{label}</Text>

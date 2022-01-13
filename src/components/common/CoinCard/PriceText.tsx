@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { THEME } from "../../../styles";
+import { useThemeContext } from "../../../contexts/ThemeContext";
 import { TCurrency } from "../../../types";
 import { formatNumber, roundNumber } from "../../../utils/helpers";
 import { Text } from "../../ui";
@@ -13,6 +13,7 @@ type Props = {
 };
 
 const PriceText: React.FC<Props> = ({ amount, currency, style }) => {
+  const { colors } = useThemeContext();
   const amountFormatted = React.useMemo(
     () => formatNumber(roundNumber(amount)),
     [amount]
@@ -20,7 +21,13 @@ const PriceText: React.FC<Props> = ({ amount, currency, style }) => {
 
   return (
     <View style={[styles.container, style]}>
-      <Text style={styles.amount} adjustsFontSizeToFit numberOfLines={1}>{amountFormatted}</Text>
+      <Text
+        style={[styles.amount, { color: colors.primary }]}
+        adjustsFontSizeToFit
+        numberOfLines={1}
+      >
+        {amountFormatted}
+      </Text>
       <Currency style={styles.currency} value={currency} />
     </View>
   );
@@ -32,7 +39,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
   amount: {
-    color: THEME.primaryColor,
     fontSize: 24,
     fontWeight: "600",
   },
