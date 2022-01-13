@@ -1,17 +1,49 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Heading, ViewContainer, TextInput, Button } from "../components/ui";
+import {
+  Heading,
+  TextInput,
+  Button,
+  KeyboardAvoidingContainer,
+} from "../components/ui";
+import { useUserContextUpdater } from "../contexts/UserContext";
+import { User } from "../models";
 
 export default function HomeScreen() {
+  const [name, setName] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+  const { userHandler } = useUserContextUpdater();
+
+  const handleSignin = React.useCallback(() => {
+    const user: User = {
+      name,
+    };
+    userHandler(user);
+  }, [name]);
+
   return (
-    <ViewContainer style={styles.container}>
+    <KeyboardAvoidingContainer style={styles.container}>
       <Heading>Welcome</Heading>
       <View style={styles.form}>
-        <TextInput placeholder="Enter your name" styleContainer={styles.name} />
-        <TextInput placeholder="Enter your passowrd" />
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Enter your name"
+          styleContainer={styles.name}
+        />
+        <TextInput
+          value={password}
+          onChangeText={setPassword}
+          placeholder="Enter your passowrd"
+          secureTextEntry
+        />
       </View>
-      <Button title="Sign in" onPress={() => alert("List")} />
-    </ViewContainer>
+      <Button
+        title="Sign in"
+        disabled={!name || !password}
+        onPress={handleSignin}
+      />
+    </KeyboardAvoidingContainer>
   );
 }
 
@@ -25,6 +57,6 @@ const styles = StyleSheet.create({
     marginVertical: 44,
   },
   name: {
-    marginBottom: 16
-  }
+    marginBottom: 16,
+  },
 });

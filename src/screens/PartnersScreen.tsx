@@ -10,7 +10,7 @@ const PartnerScreen: React.FC = () => {
       <Heading style={styles.title}>Partners</Heading>
       <Text style={styles.text}>Here are some apps I was involved in:</Text>
       {partners.map((partner) => (
-        <PartnerCard partner={partner} style={styles.card} />
+        <PartnerCard key={partner.id} partner={partner} style={styles.card} />
       ))}
     </ViewContainer>
   );
@@ -20,7 +20,8 @@ const partners = [
   {
     id: "quanto",
     name: "Quanto",
-    description: "Paraguayan fintech startup, a financial app for people, freelancers, and companies.",
+    description:
+      "Paraguayan fintech startup, a financial app for people, freelancers, and companies.",
     roles: "React/RN developer, Frontend Team Leader, and Product Owner.",
     status: "Beta development is in progress, it will publish this year",
   },
