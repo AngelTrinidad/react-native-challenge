@@ -22,7 +22,18 @@ export const formatNumber = (
  * @param value Plain number
  * @param decimal How many decimals must shows. Default is two
  */
-export const roundNumber = (value: number, decimal = 2) => {    
+export const roundNumber = (value: number, decimal = 2) => {
   //@ts-ignore
-  return +(Math.round(value + `e+${decimal}`)  + `e-${decimal}`);
-}
+  return +(Math.round(value + `e+${decimal}`) + `e-${decimal}`);
+};
+
+/**
+ * Method to convert any text to a UpperCase text each word
+ * @param text - Text to transform
+ */
+export const toUpperCaseWords = (text: string): string => {
+  const words = text.toLowerCase().split(" ");
+  return words
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
