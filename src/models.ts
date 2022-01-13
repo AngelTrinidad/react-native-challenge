@@ -17,3 +17,7 @@ export interface Partner {
   roles: string;
   status: string;
 }
+
+export interface User {
+  name: string;
+}
