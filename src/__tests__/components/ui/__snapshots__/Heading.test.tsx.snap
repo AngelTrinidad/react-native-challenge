@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Heading component should render Heading 1`] = `
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#0A132C",
+        "fontSize": 14,
+        "fontWeight": "400",
+      },
+      Object {
+        "textAlign": undefined,
+      },
+      Array [
+        Object {
+          "fontSize": 24,
+          "fontWeight": "700",
+        },
+        undefined,
+      ],
+    ]
+  }
+>
+  Testing
+</Text>
+`;
